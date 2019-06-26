@@ -16,18 +16,56 @@
 	
     <!-- *** TOPBAR Y NAVBAR END *** -->
 
-
- <!-- *** CONTENIDO ***
-    
-
-
+ <!-- _________________________________________________________  -->
+<div class="product">
+	<th:block data-th-each="product : ${products}">
+		<div class="container">
+			<div class="product-main">
+					<div class="col-md-9 p-left">
+						<div class="product-one">
+							<div class="col-md-4 product-left single-left">
+								<div class="p-one simpleCart_shelfItem">
+									<div class="front">
+	                                   <a th:href="@{'/product/detail/' + ${product.idproduct}}">
+	                                      <img th:src="@{'/public/img/' + ${product.urlimage}}" alt="" class="img-responsive">
+	                                    </a>
+			                         </div>
+			                          <div class="back">
+			                             <a th:href="@{'/product/detail/' + ${product.idproduct}}">
+			                               <img th:src="@{'/public/images/' + ${product.urlimage}}" alt="" class="img-responsive">
+			                              </a>
+			                           </div>
+	                                   <!-- <a th:href="@{'/product/detail/' + ${product.idproduct}}" class="invisible">
+	                                    <img th:src="@{'/public/img/' + ${product.urlimage}}" alt="" class="img-responsive">
+	                                	</a> -->
+	                                <div class="text">
+	                                    <h3><a th:href="@{'/product/detail/' + ${product.idproduct}}">
+	                                    	<span th:text="${product.name}"></span>
+	                                    </a></h3>
+	                                    <p class="price">$
+	                                    	<span th:text="${product.price}"></span>
+	                                    </p>
+										</p>
+	                                    <p class="buttons">
+	                                        <a th:href="@{'/product/detail/' + ${product.idproduct}}" class="btn btn-default">View detail</a>
+	                                        
+	                                    </p>
+									</div>
+							</div>						
+						</div>
+					</div>
+			</div>
+ 		</div>
+ 	</div>	
+ 	</th:block>
+</div>
         <!-- *** FOOTER Y COPYRIGHT ***
  _________________________________________________________ -->
 		<div th:replace="views/public/layout/layout :: footer"></div>
 
         <!-- *** FOOTER Y COPYRIGHT END *** -->
 
-    </div>
+   
     <!-- /#all -->
 
 
