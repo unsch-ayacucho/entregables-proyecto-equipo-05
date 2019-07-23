@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+
+<div th:replace="views/public/layout/layout :: head"></div>
+
+</head>
+
+<body>
+
+	<!-- *** TOPBAR Y NAVBAR ***
+ _________________________________________________________ -->
+
+	<div th:replace="views/public/layout/layout :: header"></div>
+
+	<!-- *** TOPBAR Y NAVBAR END *** -->
+
+
+	<!-- *** CONTENIDO *** -->
+	<div class="single contact">
+		<div class="container">
+			<div class="single-main">
+				<div class="col-md-9 single-main-left">
+					<div class="sngl-top">
+						<div class="col-md-5 single-top-left">
+							<div class="flexslider">
+								<ul class="slides">
+									<li data-thumb="/public/images/s1.jpg"><img
+										th:src="@{'/public/images/' + ${product.urlimage}}" /></li>
+									<li data-thumb="/public/images/s2.jpg"><img
+										th:src="@{'/public/images/' + ${product.urlimage}}" /></li>
+									<li data-thumb="/public/images/s3.jpg"><img
+										th:src="@{'/public/images/' + ${product.urlimage}}" /></li>
+									<li data-thumb="/public/images/s4.jpg"><img
+										th:src="@{'/public/images/' + ${product.urlimage}}" /></li>
+								</ul>
+							</div>
+							<!-- FlexSlider -->
+							<script defer src="/public/js/jquery.flexslider.js"></script>
+							<link rel="stylesheet" th:href="@{/public/css/flexslider.css}"
+								type="text/css" media="screen" />
+
+							<script>
+								// Can also be used with $(document).ready()
+								$(window).load(function() {
+									$('.flexslider').flexslider({
+										animation : "slide",
+										controlNav : "thumbnails"
+									});
+								});
+							</script>
+						</div>
+						<div class="col-md-7 single-top-right">
+							<div class="details-left-info simpleCart_shelfItem">
+								<h3 th:text="${product.name}"></h3>
+								<p class="availability">
+									Availability: <span class="color">In stock</span>
+								</p>
+								<div class="price_single">
+									<span class="reducedfrom">$800.00</span> 
+									<span class="actual item_price">$
+										<span th:text="${product.price}"></span>
+									</span>
+									<a href="#">click for offer</a>
+								</div>
+								<h2 class="quick">Quick Overview:</h2>
+								<p class="quick_desc">
+									<span th:text="${product.description}"></span>
+								</p>
+								<ul class="product-colors">
+									<h3>available Colors ::</h3>
+									<li><a class="color1" href="#"><span> </span></a></li>
+									<li><a class="color2" href="#"><span> </span></a></li>
+									<li><a class="color3" href="#"><span> </span></a></li>
+									<li><a class="color4" href="#"><span> </span></a></li>
+									<li><a class="color5" href="#"><span> </span></a></li>
+									<li><a class="color6" href="#"><span> </span></a></li>
+									<li><a class="color7" href="#"><span> </span></a></li>
+									<li><a class="color8" href="#"><span> </span></a></li>
+									<div class="clear"></div>
+								</ul>
+								<ul class="size">
+									<h3>Length</h3>
+									<li><a href="#">7</a></li>
+									<li><a href="#">6</a></li>
+								</ul>
+								<div class="quantity_box">
+									<ul class="product-qty">
+										<span>Quantity:</span>
+										<select>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+											<option>6</option>
+										</select>
+									</ul>
+								</div>
+								<div class="clearfix"></div>
+								<div class="single-but item_add">
+									<input type="submit" value="add to cart" />
+								</div>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+
+					<div class="latest products">
+						<div class="product-one">
+							<th:block th:each="product : ${productsLatest}">											
+								<div class="col-md-4 product-left single-left">
+									<div class="p-one simpleCart_shelfItem">									
+										<a th:href="@{'/product/detail/' + ${product.idproduct}}">
+											<img th:src="@{'/public/images/' + ${product.urlimage}}" alt="" />
+											<div class="mask mask1">
+												<span>Ver Detalle</span>
+											</div>
+										</a>
+										<h4 th:text="${product.name}"></h4>
+										<p>
+											<a class="item_add" th:href="@{'/product/detail/' + ${product.idproduct}}"><i></i> 
+												<span class=" item_price">$
+													<span th:text="${product.price}"></span>
+												</span>
+											</a>
+										</p>
+									</div>
+								</div>	
+							</th:block>			
+							<div class="clearfix"></div>				
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-md-3 single-right">
+				<h3>Categories</h3>
+				<ul class="product-categories">
+					<th:block data-th-each="category1 : ${categories}">
+							<span th:text="${category1.name}"></span>
+							<th:block data-th-if="${category1.categories.size()} > 0">
+								<th:block data-th-each="category2 : ${category1.categories}">
+									<div class="col1 me-one">
+										<h4 th:text="${category2.name}"></h4>
+										<th:block data-th-if="${category2.categories.size()} > 0">
+											<ul>
+												<th:block data-th-each="category3 : ${category2.categories}">
+													<li><a
+														th:href="@{'/product/category/' + ${category3.idcategory}}">
+															<span th:text="${category3.name}"></span>
+													</a></li>
+												</th:block>
+											</ul>
+										</th:block>
+									</div>
+								</th:block>
+							</th:block>
+						</th:block>
+				</ul>
+				<h3>Colores</h3>
+				<ul class="product-categories">
+					<li><a href="#">Green</a> <span class="count">(14)</span></li>
+					<li><a href="#">Blue</a> <span class="count">(2)</span></li>
+					<li><a href="#">Red</a> <span class="count">(2)</span></li>
+					<li><a href="#">Gray</a> <span class="count">(8)</span></li>
+					<li><a href="#">Green</a> <span class="count">(11)</span></li>
+					<li><a href="#">Yellow</a> <span class="count">(2)</span></li>
+				</ul>				
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	
+
+
+
+	<!-- *** FOOTER Y COPYRIGHT ***
+ _________________________________________________________ -->
+	<div th:replace="views/public/layout/layout :: footer"></div>
+
+	<!-- *** FOOTER Y COPYRIGHT END *** -->
+
+
+	<!-- *** SCRIPTS TO INCLUDE ***
+ _________________________________________________________ -->
+	<!--//fonts-->
+	<script type="text/javascript" src="/public/js/move-top.js"></script>
+	<script type="text/javascript" src="/public/js/easing.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event) {
+				event.preventDefault();
+				$('html,body').animate({
+					scrollTop : $(this.hash).offset().top
+				}, 1000);
+			});
+		});
+	</script>
+	<!-- start menu -->
+	<script src="/public/js/simpleCart.min.js">
+		
+	</script>
+	<link th:href="@{/public/css/memenu.css}" rel="stylesheet"
+		type="text/css" media="all" />
+	<script type="text/javascript" src="/public/js/memenu.js"></script>
+	<script>
+		$(document).ready(function() {
+			$(".memenu").memenu();
+		});
+	</script>
+
+
+</body>
+
+</html>

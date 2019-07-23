@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+
+    <div th:replace="views/public/layout/layout :: head"></div>
+
+</head>
+
+<body>
+
+    <!-- *** TOPBAR Y NAVBAR ***
+ _________________________________________________________ -->
+	
+	<div th:replace="views/public/layout/layout :: header"></div>
+	
+    <!-- *** TOPBAR Y NAVBAR END *** -->
+
+
+
+    <div class="bnr" id="home">
+		<div  id="top" class="callbacks_container">
+			<ul class="rslides" id="slider4">
+			    <li>
+					<div class="banner-1"></div>
+				</li>
+				<li>
+					<div class="banner-2"></div>
+				</li>
+				<li>
+					<div class="banner-3"></div>
+				</li>
+			</ul>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+	<!--banner-ends--> 
+	<!--Slider-Starts-Here-->
+				<script src="/public/js/responsiveslides.min.js"></script>
+			 <script>
+			    // You can also use "$(window).load(function() {"
+			    $(function () {
+			      // Slideshow 4
+			      $("#slider4").responsiveSlides({
+			        auto: true,
+			        pager: true,
+			        nav: false,
+			        speed: 500,
+			        namespace: "callbacks",
+			        before: function () {
+			          $('.events').append("<li>before event fired.</li>");
+			        },
+			        after: function () {
+			          $('.events').append("<li>after event fired.</li>");
+			        }
+			      });
+			
+			    });
+			  </script>
+			<!--End-slider-script-->
+			
+	<!--start-banner-bottom--> 
+	<div class="banner-bottom">
+		<div class="container">
+			<div class="banner-bottom-top">
+				<div class="col-md-6 banner-bottom-left">
+					<div class="bnr-one">
+						<div class="bnr-left">
+							<h1><a th:href="@{/product/detail/}"></a>DESCRIPCION</h1>
+							<p>Detalle</p>																			
+							<div class="b-btn"> 
+								<a href="#">COMPRAR AHORA</a>
+							</div>
+						</div>
+						<div class="bnr-right"> 
+							<a href="single.html"><img src="/public/images/b-2.png" alt="" /></a>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+				<div class="col-md-6 banner-bottom-right">
+					<div class="bnr-two">
+						<div class="bnr-left">
+							<h2><a href="single.html">DESCRIPCION</a></h2>
+							<p>Detalle</p>
+							<div class="b-btn"> 
+								<a href="single.html">COMPRAR AHORA</a>
+							</div>
+						</div>
+						<div class="bnr-right"> 
+							<a href="single.html"><img src="/public/images/b-1.jpg" alt="" /></a>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+<div class="bnr" id="home">
+		<div  id="top" class="callbacks_container">
+			<ul class="rslides" id="slider4">
+			    <li>
+					<div class="banner-1"></div>
+				</li>
+				<li>
+					<div class="banner-2"></div>
+				</li>
+				<li>
+					<div class="banner-3"></div>
+				</li>
+			</ul>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+	<!--banner-ends--> 
+	
+	<!--Slider-Starts-Here-->
+				<script src="/public/js/responsiveslides.min.js"></script>
+			 <script>
+			    // You can also use "$(window).load(function() {"
+			    $(function () {
+			      // Slideshow 4
+			      $("#slider4").responsiveSlides({
+			        auto: true,
+			        pager: true,
+			        nav: false,
+			        speed: 500,
+			        namespace: "callbacks",
+			        before: function () {
+			          $('.events').append("<li>before event fired.</li>");
+			        },
+			        after: function () {
+			          $('.events').append("<li>after event fired.</li>");
+			        }
+			      });
+			
+			    });
+			  </script>
+			<!--End-slider-script-->
+	<!--start-banner-bottom--> 
+	<div class="banner-bottom">
+		<div class="container">
+			<div class="banner-bottom-top">
+				<div class="col-md-6 banner-bottom-left">
+					<div class="bnr-one">
+						<div class="bnr-left">
+							<h1><a href="single.html">DESCRIPCION</a></h1>
+							<p>Detalle</p>
+							<div class="b-btn"> 
+								<a href="single.html">COMPRAR AHORA</a>
+							</div>
+						</div>
+						<div class="bnr-right"> 
+							<a href="single.html"><img src="/public/images/b-3.png" alt="" /></a>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+				<div class="col-md-6 banner-bottom-right">
+					<div class="bnr-two">
+						<div class="bnr-left">
+							<h2><a href="single.html">DESCRIPCION</a></h2>
+							<p>Detalle</p>
+							<div class="b-btn"> 
+								<a href="single.html">COMPRAR AHORA</a>
+							</div>
+						</div>
+						<div class="bnr-right"> 
+							<a href="single.html"><img src="/public/images/b-4.png" alt="" /></a>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+<!--end-shoes-->
+	<!-- start-abt-shoe -->
+	<div class="abt-shoe">
+		<div class="container"> 
+		<th:block data-th-each="product : ${featuredProducts}">
+			<div class="abt-shoe-main">
+				<div class="col-md-4 abt-shoe-left">
+					<div class="abt-one">
+						<a th:href="@{'/product/detail/' + ${product.idproduct}}">
+						<img th:src="@{'/public/images/' + ${product.urlimage}}" alt="" /></a>
+						<h4><a href="single.html">Lo mas destacado</a></h4>
+						<p>Presentamos los productos mas vendidos, todos cuentan con la nueva mediasuela Boost HD que ofrece a tus pies una sensacion incomparable. </p>
+					</div>
+				</div>				
+			</div>
+		</th:block>
+		</div>
+	</div>
+<!-- 	end-abt-shoe -->
+
+
+
+        <!-- *** FOOTER Y COPYRIGHT ***
+ _________________________________________________________ -->
+		<div th:replace="views/public/layout/layout :: footer"></div>
+
+        <!-- *** FOOTER Y COPYRIGHT END *** -->
+
+    </div>
+    <!-- /#all -->
+
+
+    
+
+    <!-- *** SCRIPTS TO INCLUDE ***
+ _________________________________________________________ -->
+   	<!--//fonts-->
+<script type="text/javascript" src="/public/js/move-top.js"></script>
+<script type="text/javascript" src="/public/js/easing.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event) {
+			event.preventDefault();
+			$('html,body').animate({
+				scrollTop : $(this.hash).offset().top
+			}, 1000);
+		});
+	});
+</script>
+<!-- start menu -->
+<script src="/public/js/simpleCart.min.js">
+	
+</script>
+<link th:href="@{/public/css/memenu.css}" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="/public/js/memenu.js"></script>
+<script>
+	$(document).ready(function() {
+		$(".memenu").memenu();
+	});
+</script>
+
+
+</body>
+
+</html>

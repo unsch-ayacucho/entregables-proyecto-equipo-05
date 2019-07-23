@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+
+<div th:replace="views/public/layout/layout :: head"></div>
+
+</head>
+
+<body>
+
+	<!-- *** TOPBAR Y NAVBAR ***
+ _________________________________________________________ -->
+
+	<div th:replace="views/public/layout/layout :: header"></div>
+
+	<!-- *** TOPBAR Y NAVBAR END *** -->
+
+	<!-- _________________________________________________________  -->
+	<div class="product">
+		<div class="container">
+			<div class="product-main">
+				<div class="col-md-9 p-left">
+					<div class="product-one">
+						<th:block th:each="product : ${products}">
+							<div class="col-md-4 product-left single-left">
+								<div class="p-one simpleCart_shelfItem">
+									<a th:href="@{'/product/detail/' + ${product.idproduct}}">
+										<img th:src="@{'/public/images/' + ${product.urlimage}}"
+										alt="" />
+										<div class="mask mask1">
+											<span>Ver Detalle</span>
+										</div>
+									</a>
+									<p>
+										<a class="item_add" href="#"><i></i> <span
+											class=" item_price">$329</span></a>
+									</p>
+								</div>
+							</div>
+						</th:block>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+
+				<div class="col-md-3 p-right single-right">
+					<h3>Categorias</h3>
+					<ul class="product-categories">
+						<th:block data-th-each="category1 : ${categories}">
+							<span th:text="${category1.name}"></span>
+							<th:block data-th-if="${category1.categories.size()} > 0">
+								<th:block data-th-each="category2 : ${category1.categories}">
+									<div class="col1 me-one">
+										<h4 th:text="${category2.name}"></h4>
+										<th:block data-th-if="${category2.categories.size()} > 0">
+											<ul>
+												<th:block data-th-each="category3 : ${category2.categories}">
+													<li><a
+														th:href="@{'/product/category/' + ${category3.idcategory}}">
+															<span th:text="${category3.name}"></span>
+													</a></li>
+												</th:block>
+											</ul>
+										</th:block>
+									</div>
+								</th:block>
+							</th:block>
+						</th:block>
+					</ul>
+					<h3>Colores</h3>
+					<ul class="product-categories">
+						<th:block data-th-each="colour : ${colour}">
+							<span th:text="${colour.name}"></span>
+							<li><a href="#">Green</a> <span class="count">(14)</span></li>
+						</th:block>
+					</ul>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- *** FOOTER Y COPYRIGHT ***
+ _________________________________________________________ -->
+	<div th:replace="views/public/layout/layout :: footer"></div>
+
+	<!-- *** FOOTER Y COPYRIGHT END *** -->
+
+
+	<!-- /#all -->
+
+
+
+
+	<!-- *** SCRIPTS TO INCLUDE ***
+ _________________________________________________________ -->
+	<!--//fonts-->
+	<script type="text/javascript" src="/public/js/move-top.js"></script>
+	<script type="text/javascript" src="/public/js/easing.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event) {
+				event.preventDefault();
+				$('html,body').animate({
+					scrollTop : $(this.hash).offset().top
+				}, 1000);
+			});
+		});
+	</script>
+	<!-- start menu -->
+	<script src="/public/js/simpleCart.min.js">
+		
+	</script>
+	<link th:href="@{/public/css/memenu.css}" rel="stylesheet"
+		type="text/css" media="all" />
+	<script type="text/javascript" src="/public/js/memenu.js"></script>
+	<script>
+		$(document).ready(function() {
+			$(".memenu").memenu();
+		});
+	</script>
+
+
+</body>
+
+</html>
